@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #000;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+  
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    font-size: 14px;
+    text-align: center;
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.4),
+      inset 0 0 10px rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
+  
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.3) transparent transparent transparent;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  .tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-15px);
+  }
+  
+  .tooltip-container:hover .tooltip::after {
+    border-color: rgba(255, 255, 255, 0.6) transparent transparent transparent;
+  }
+  
+  .tooltip-trigger {
+    padding: 15px 30px;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
+  }
+  
+  .tooltip-trigger:hover {
+    background: linear-gradient(45deg, #c74ffe, #9400fe);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgb(255, 255, 255);
+  }
+  
+.nodo {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 80px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.vulnerable { 
+    background-color: rgb(255, 0, 153);
+}
+
+.protegido { 
+    background-color: rgb(26, 0, 111); 
+}
+
+.hackeado { 
+    background-color: red; 
+}
+
+#pregunta {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#mensaje {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#resultadoFinal {
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: yellow;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="juego.css">
+    <title>Juego de Seguridad</title>
+</head>
+<body>
+    <h1>¡PROTEGE LOS NODOS DE CIBERATAQUES!</h1>
+    <h2>vidas restantes: <span id="vidas">5</span></h2>
+   
+<div class="tooltip-container">
+    <button class="tooltip-trigger">¿Cómo jugar?</button>
+    <div class="tooltip">Responde bien las preguntas para librar los nodos del hackeo</div>
+  </div>
+  
+
+    <div id="juego"></div>
+
+    <div id="pregunta" style="display: none;">
+        <p id="textoPregunta"></p>
+        <button onclick="verificarRespuesta(0)">A</button>
+        <button onclick="verificarRespuesta(1)">B</button>
+        <button onclick="verificarRespuesta(2)">C</button>
+    </div>
+
+    <p id="mensaje"></p>
+    <p id="resultadoFinal" style="font-size: 1.5em; font-weight: bold;"></p>
+
+    <script>
+        const preguntas = [
+            { pregunta: "¿Qué significa IoT?", opciones: ["Internet of Things", "Intelligence of Technology", "Input Output Tech"], correcta: 0 },
+            { pregunta: "¿Cuál es un beneficio del Big Data?", opciones: ["Mayor privacidad", "Mejor toma de decisiones", "Menos almacenamiento"], correcta: 1 },
+            { pregunta: "¿Qué es un firewall?", opciones: ["Un antivirus", "Una barrera de seguridad", "Un tipo de malware"], correcta: 1 },
+            { pregunta: "¿Cuál es un tipo de ciberataque?", opciones: ["DDoS", "Firewall", "HTML"], correcta: 0 },
+            { pregunta: "¿Qué protocolo se usa para cifrar sitios web?", opciones: ["HTTP", "FTP", "HTTPS"], correcta: 2 },
+            { pregunta: "¿Qué significa IoT?", opciones: ["Internet of Things", "Intelligence of Technology", "Input Output Tech"], correcta: 0 },
+            { pregunta: "¿Cuál es un beneficio del Big Data?", opciones: ["Mayor privacidad", "Mejor toma de decisiones", "Menos almacenamiento"], correcta: 1 },
+            { pregunta: "¿Qué es un firewall?", opciones: ["Un antivirus", "Una barrera de seguridad", "Un tipo de malware"], correcta: 1 },
+            { pregunta: "¿Cuál es un tipo de ciberataque?", opciones: ["DDoS", "Firewall", "HTML"], correcta: 0 },
+            { pregunta: "¿Qué protocolo se usa para cifrar sitios web?", opciones: ["HTTP", "FTP", "HTTPS"], correcta: 2 }
+        ];
+
+        let nodos = [];
+        let nodoSeleccionado = null;
+        let vidas = 5;
+        let protegidos = 0;
+        let hackeados = 0;
+
+        function crearNodos() {
+            let juego = document.getElementById("juego");
+            for (let i = 0; i < 10; i++) {
+                let nodo = document.createElement("div");
+                nodo.classList.add("nodo", "vulnerable");
+                nodo.textContent = "Nodo " + (i + 1);
+                nodo.onclick = () => mostrarPregunta(i);
+                juego.appendChild(nodo);
+                nodos.push(nodo);
+            }
+        }
+
+        function mostrarPregunta(index) {
+            if (vidas <= 0 || nodos[index].classList.contains("protegido")) return; 
+            
+            nodoSeleccionado = index;
+            let pregunta = preguntas[Math.floor(Math.random() * preguntas.length)];
+            document.getElementById("textoPregunta").textContent = pregunta.pregunta;
+            
+            let botones = document.querySelectorAll("#pregunta button");
+            botones.forEach((boton, i) => {
+                boton.textContent = pregunta.opciones[i];
+            });
+
+            document.getElementById("pregunta").style.display = "block";
+            document.getElementById("mensaje").textContent = "";
+        }
+
+        function verificarRespuesta(respuesta) {
+            if (vidas <= 0) return;
+
+            let preguntaActual = preguntas.find(p => p.pregunta === document.getElementById("textoPregunta").textContent);
+            if (preguntaActual.correcta === respuesta) {
+                nodos[nodoSeleccionado].classList.remove("vulnerable");
+                nodos[nodoSeleccionado].classList.add("protegido");
+                document.getElementById("mensaje").textContent = "✅ ¡Bien hecho! El nodo está protegido.";
+                document.getElementById("mensaje").style.color = "green";
+                protegidos++;
+            } else {
+                vidas--;
+                nodos[nodoSeleccionado].classList.remove("vulnerable");
+                nodos[nodoSeleccionado].classList.add("hackeado");
+                document.getElementById("vidas").textContent = vidas;
+                document.getElementById("mensaje").textContent = "❌ Respuesta incorrecta. El nodo ha sido comprometido.";
+                document.getElementById("mensaje").style.color = "red";
+                hackeados++;
+            }
+
+            document.getElementById("pregunta").style.display = "none";
+
+            verificarFinJuego();
+        }
+
+        function verificarFinJuego() {
+            if (vidas === 0 || protegidos + hackeados === nodos.length) {
+                let mensajeFinal = `🎉 ¡Juego terminado! Has salvado ${protegidos} nodos y perdido ${hackeados}.`;
+                document.getElementById("resultadoFinal").textContent = mensajeFinal;
+                document.getElementById("mensaje").textContent = "";
+
+                nodos.forEach(nodo => nodo.onclick = null);
+            }
+        }
+
+        crearNodos();
+    </script>
+</body>
+</html>
