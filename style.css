@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background: linear-gradient(#000000c3, #00000071), url('/imagenes/1.jpg');
+    background: linear-gradient(#000000c3, #00000071), url(../Industrias-4.0/imagenes/1.jpg);
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -183,31 +183,31 @@ header {
 
 /* Fondos específicos para cada tarjeta */
 .card[data-before="IA"] {
-    background: linear-gradient(#000000cb, #00000050), url('/imagenes/ia.jpg');
+    background: linear-gradient(#000000cb, #00000050), url(../Industrias-4.0/imagenes/ia.jpg);
     background-size: cover;
     background-position: center;
 }
 
 .card[data-before="Big Data"] {
-    background: linear-gradient(#000000, #0000009e), url('/imagenes/big.jpg');
+    background: linear-gradient(#000000, #0000009e), url('../Industrias-4.0/imagenes/big.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .card[data-before="IoT"] {
-  background: linear-gradient(#000000, #0000009e), url('/imagenes/Iot.jpg');
+  background: linear-gradient(#000000, #0000009e), url('../Industrias-4.0/imagenes/Iot.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .card[data-before="Machine Learning"] {
-  background: linear-gradient(#000000, #0000009e), url('/imagenes/machine.jpg');
+  background: linear-gradient(#000000, #0000009e), url('../Industrias-4.0/imagenes/machine.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .card[data-before="Automatización y robótica"] {
-  background: linear-gradient(#000000, #0000009e), url('/imagenes/robo.jpg');
+  background: linear-gradient(#000000, #0000009e), url('../Industrias-4.0/imagenes/robo.jpg');
     background-size: cover;
     background-position: center;
 }
